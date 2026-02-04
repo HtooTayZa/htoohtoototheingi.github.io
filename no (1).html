@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh no Theingi! 😤</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fd79a8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px) rotate(-2deg); }
+            75% { transform: translateX(10px) rotate(2deg); }
+        }
+
+        .emoji-sad {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: wiggle 1s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin: 30px 0;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        .stubborn-message {
+            font-size: 20px;
+            color: #666;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .bouquet {
+            font-size: 70px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flower {
+            display: inline-block;
+            animation: pop-in 0.5s ease-out forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .flower:nth-child(1) { animation-delay: 0.1s; }
+        .flower:nth-child(2) { animation-delay: 0.2s; }
+        .flower:nth-child(3) { animation-delay: 0.3s; }
+        .flower:nth-child(4) { animation-delay: 0.4s; }
+        .flower:nth-child(5) { animation-delay: 0.5s; }
+        .flower:nth-child(6) { animation-delay: 0.6s; }
+        .flower:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        .funny-emojis {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            font-size: 50px;
+        }
+
+        .emoji {
+            animation: bounce 2s infinite;
+        }
+
+        .emoji:nth-child(1) { animation-delay: 0s; }
+        .emoji:nth-child(2) { animation-delay: 0.2s; }
+        .emoji:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-reconsider {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-reconsider:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.6);
+        }
+
+        .btn-back {
+            border: 2px solid #e74c3c;
+            background: white;
+            color: #e74c3c;
+        }
+
+        .btn-back:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .note {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #856404;
+            text-align: left;
+        }
+
+        /* Crying emoji rain */
+        .tears {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tear {
+            position: absolute;
+            font-size: 24px;
+            animation: tear-fall 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes tear-fall {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tears" id="tears"></div>
+    
+    <div class="container">
+        <div class="emoji-sad">😤</div>
+        <h1>I don't accept "no"!</h1>
+        
+        <div class="message">
+            But here are some flowers anyway... 
+        </div>
+        
+        <div class="stubborn-message">
+            Because you deserve them whether you say yes or not! 💐
+        </div>
+        
+        <div class="bouquet">
+            <span class="flower">🌹</span>
+            <span class="flower">🌷</span>
+            <span class="flower">🌺</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌻</span>
+            <span class="flower">💐</span>
+        </div>
+        
+        <div class="funny-emojis">
+            <span class="emoji">😭</span>
+            <span class="emoji">💔</span>
+            <span class="emoji">🥺</span>
+        </div>
+        
+        <div class="note">
+            <strong>Fun fact:</strong> Did you know that "no" backwards is "on"? 
+            And "on" means we're ON for 14th February, right? 😏
+        </div>
+        
+        <div class="btn-container">
+            <a href="yes.html" class="btn btn-reconsider">
+                Fine, I'll reconsider! 💖
+            </a>
+            <a href="index.html" class="btn btn-back">
+                ← Back to Start
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Crying emoji rain
+        const tearsContainer = document.getElementById('tears');
+        
+        function createTear() {
+            const tear = document.createElement('div');
+            tear.className = 'tear';
+            tear.textContent = '💧';
+            tear.style.left = Math.random() * 100 + '%';
+            tear.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            tear.style.animationDelay = Math.random() * 2 + 's';
+            tearsContainer.appendChild(tear);
+            
+            setTimeout(() => tear.remove(), 6000);
+        }
+        
+        setInterval(createTear, 400);
+        
+        // Create initial tears
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createTear, i * 200);
+        }
+    </script>
+</body>
+</html>

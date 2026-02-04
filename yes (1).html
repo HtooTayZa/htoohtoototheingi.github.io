@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay Theingi! 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f1c40f;
+            top: -10px;
+            opacity: 0;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: celebration 1s ease-out;
+        }
+
+        @keyframes celebration {
+            0% {
+                transform: scale(0.5) rotate(-5deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05) rotate(2deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .emoji-big {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+
+        .bouquet {
+            font-size: 80px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flower {
+            display: inline-block;
+            animation: grow 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .flower:nth-child(1) { animation-delay: 0.1s; }
+        .flower:nth-child(2) { animation-delay: 0.2s; }
+        .flower:nth-child(3) { animation-delay: 0.3s; }
+        .flower:nth-child(4) { animation-delay: 0.4s; }
+        .flower:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes grow {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .stickers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            font-size: 40px;
+            flex-wrap: wrap;
+        }
+
+        .sticker {
+            animation: float-sticker 3s infinite ease-in-out;
+        }
+
+        .sticker:nth-child(1) { animation-delay: 0s; }
+        .sticker:nth-child(2) { animation-delay: 0.5s; }
+        .sticker:nth-child(3) { animation-delay: 1s; }
+        .sticker:nth-child(4) { animation-delay: 1.5s; }
+        .sticker:nth-child(5) { animation-delay: 2s; }
+
+        @keyframes float-sticker {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .btn-back {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: 2px solid #d63384;
+            background: white;
+            color: #d63384;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background: #d63384;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Heart rain */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="emoji-big">🎉</div>
+        <h1>Yay! 💖</h1>
+        
+        <div class="message">
+            I'm so happy! You just made me the luckiest person alive! 
+            Here's a beautiful bouquet just for you, my special friend! 🌹
+        </div>
+        
+        <div class="bouquet">
+            <span class="flower">🌹</span>
+            <span class="flower">🌺</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌻</span>
+        </div>
+        
+        <div class="stickers">
+            <span class="sticker">💕</span>
+            <span class="sticker">💖</span>
+            <span class="sticker">💗</span>
+            <span class="sticker">💝</span>
+            <span class="sticker">💘</span>
+        </div>
+        
+        <div class="message">
+            Every moment with you is like a dream come true. 
+            Thank you for being my special friend this 14th February! 🥰
+        </div>
+        
+        <a href="index.html" class="btn-back">← Back to Start</a>
+    </div>
+
+    <script>
+        // Confetti animation
+        const confettiContainer = document.getElementById('confetti');
+        const colors = ['#f1c40f', '#e74c3c', '#3498db', '#9b59b6', '#2ecc71', '#e67e22'];
+        
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-piece';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confettiContainer.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+        
+        createConfetti();
+        setInterval(createConfetti, 3000);
+        
+        // Heart rain
+        const heartsContainer = document.getElementById('hearts');
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 10000);
+        }
+        
+        setInterval(createHeart, 500);
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 200);
+        }
+        
+        // Play celebration sound (optional - you can add audio element)
+        // const audio = new Audio('celebration.mp3');
+        // audio.play();
+    </script>
+</body>
+</html>
